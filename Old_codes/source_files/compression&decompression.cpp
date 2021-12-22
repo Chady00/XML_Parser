@@ -1,5 +1,5 @@
 
-#include "cmp.h"
+#include "compression.h"
 
 /********************** Glopal Variables*********************/
 unsigned long long freqs[1000] = {0};
