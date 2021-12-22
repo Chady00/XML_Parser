@@ -211,7 +211,50 @@ void save_to_file(void)
 
     out_file.close();
 }
+void decompress(void)
+{
+    node temp = tree_root;
+    for (size_t i = 0; i < temp2.size(); i++) /get the decoded string from the tree*/
+    {
+        if (temp2[i] == '0')
+            temp = temp->left;
+        else
+            temp = temp->right;
 
+        if (temp->left == nullptr && temp->right == nullptr)
+        {
+            decoded_string += temp->data;
+            temp = tree_root;
+        }
+    }
+
+    std::ofstream ofs;
+    ofs.open("decompressed_output2.xml", std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+
+    ofstream out_file;
+
+    out_file.open("decompressed_output2.xml");
+    int flag = 0; // a flag fo case of string
+    for (size_t i = 0; i < decoded_string.size(); i++)
+    {
+        flag = (decoded_string[i] >= 45 && decoded_string[i] < 122 && decoded_string[i + 1] == ' ' && !(decoded_string[i + 2] >= 45 && decoded_string[i + 1] < 122));
+
+        if (flag  (decoded_string[i] == '>' && decoded_string[i + 1] == '<')  (decoded_string[i] == '>' && decoded_string[i + 1] == ' '))
+        {
+            out_file << decoded_string[i];
+            out_file << endl; // new line
+            flag = 0;
+        }
+        else
+        {
+            out_file << decoded_string[i];
+        }
+    }
+    out_file.close();
+    temp2 = "";
+    // cout << decoded_string << endl;
+}
 
 void compress()
 {  // reset variables
