@@ -1,4 +1,4 @@
-#include "comp.h"
+#include "compression.h"
 /********************** Glopal Variables*********************/
 unsigned long long freqs[1000] = {0};
 char cs[200] = {0}; // just repeated characters
