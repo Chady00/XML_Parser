@@ -251,3 +251,70 @@ void print_node(node*root,int& new_space,int node_type,int rr_indicator,int rr_m
         output<<"\""<<root->tagdata<<"\"";
 
     }
+    if(root->childern.size())
+    {
+
+        int chil_size=root->childern.size();
+        int new_type=0;
+        int my_repeat=1;
+        for(int i=0; i<chil_size; i++)
+        {
+            if(my_repeat)
+            {
+                int repeat=1;
+                int j=0;
+                while(j+1<chil_size &&root->childern[j]->tagname==root->childern[j+1]->tagname )
+                {
+                    repeat++;
+                    j++;
+                }
+                rr_max=repeat;
+                //cout<<rr_max;
+                rr_indicator=1;
+                my_repeat=0;
+            }
+            if( root->childern[i]->childern.size() || rr_max >1)
+            {
+                new_type=1;
+            }
+            else
+            {
+                new_type=0;
+            }
+            print_node(root->childern[i],new_space,new_type,rr_indicator,rr_max,3,s);
+            if(rr_max>1 && rr_indicator<=rr_max)
+            {
+                rr_indicator++;
+            }
+            if(new_type==1)
+            {
+                new_space--;
+                if( root->childern[i]->childern.size())
+                {
+                    output << "\n";
+                    for(int k=0;k<new_space;k++){
+                        output <<s;
+                    }
+                    output<<"}";
+                }
+            }
+            if(rr_indicator>1 && rr_indicator>rr_max)
+            {
+                rr_indicator=1;
+                rr_max=1;
+                new_space--;
+                output << "\n";
+                for(int k=0;k<new_space;k++){
+                    output <<s;
+                }
+                output<<"]";
+                my_repeat=1;
+            }
+            if(i!=root->childern.size()-1)
+            {
+                output<<",";
+            }
+        }
+    }
+
+}
