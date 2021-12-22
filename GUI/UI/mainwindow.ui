@@ -1,1 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1245</width>
+    <height>511</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTextEdit" name="inputText">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>30</y>
+      <width>531</width>
+      <height>391</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="outputText">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>30</y>
+      <width>561</width>
+      <height>391</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#BAE2FF;
+border:3px solid white;;
+color:#637D6A;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+
+QPushButton#pushButton:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Format</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#AFD4F0;
+border:3px solid white;
+color:#709078;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+
+QPushButton#pushButton_2:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Consistency</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#A5C7E2;
+border:3px solid white;
+color:#62946F;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+
+
+QPushButton#pushButton_3:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>ToJson</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>260</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#91B0C7;
+border:3px solid white;
+color:#53735B;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+
+QPushButton#pushButton_4:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Compress</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>310</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#7F99AE;
+border:3px solid white;
+color:#D4D4D4;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+QPushButton#pushButton_5:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Decompress</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>360</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#5B6D7A;
+border:3px solid white;
+color:#ECECEC;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+QPushButton#pushButton_6:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Minify</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>10</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>5</width>
+      <height>5</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-weight: bold;
+font-size: 9pt;
+color:blue;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>INPUT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>10</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-weight: bold;
+font-size: 9pt;
+color:blue;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>OUTPUT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>430</y>
+      <width>671</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-weight: bold;
+font-size: 15pt;
+color:red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Please Select a File to Open --&gt; File --&gt; Open --&gt; Ok</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#AFD4F0;
+border:3px solid white;
+color:#709078;
+font-weight: bold;
+border-bottom: 5px solid rgb(50,50,50);
+}
+
+QPushButton#pushButton_7:hover {
+     background-color: #FF8E8E;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Detect</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1245</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuCredits">
+    <property name="title">
+     <string>Credits</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuCredits"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
 
