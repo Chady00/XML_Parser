@@ -216,7 +216,7 @@ void save_to_file(void)
 void decompress(void)
 {
     node temp = tree_root;
-    for (size_t i = 0; i < temp2.size(); i++) /get the decoded string from the tree*/
+    for (size_t i = 0; i < temp2.size(); i++) /*get the decoded string from the tree*/
     {
         if (temp2[i] == '0')
             temp = temp->left;
