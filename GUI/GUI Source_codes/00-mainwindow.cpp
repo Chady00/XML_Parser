@@ -148,3 +148,127 @@ void MainWindow::on_pushButton_4_clicked()
 
 }
 
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------DECOMPRESS BUTTON------------------------------------------------*/
+
+void MainWindow::on_pushButton_5_clicked()
+{
+ if(zk==1){
+    decompress();
+    QFile file("OUTPUT_FILES/decompression_output.xml");
+    file.open(QFile::ReadOnly | QFile::Text);
+    ui->outputText->setPlainText(file.readAll());
+   //clear the string
+    in_s="";
+    file.close();}
+ else {QMessageBox::warning(this,"Crash Alert","Please load a sample first to decompress");}
+
+}
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------TO_JASON()-------------------------------------------------------*/
+void MainWindow::on_pushButton_3_clicked()
+{
+        if(zk==1){
+       QTextStream stream(&loaded_text);
+        while (stream.readLineInto(&s)){
+        string line2=s.toStdString();
+        line3.push_back(line2);
+        }
+
+    toJason();
+    QFile file("OUTPUT_FILES/toJson_output.json");
+    file.open(QFile::ReadOnly | QFile::Text);
+    ui->outputText->setPlainText(file.readAll());
+   // line3.clear();
+}
+        else {QMessageBox::warning(this,"Crash Alert","Please load a sample first to convert to JSON");}
+
+}
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Correct_Errors---------------------------------------------------*/
+void MainWindow::on_pushButton_2_clicked()
+{   if(zk==1){
+    //clear the output window
+    ui->outputText->clear();
+
+    QTextStream stream(&loaded_text);
+
+    while (stream.readLineInto(&s)){
+        error.append(s.toStdString());
+        error.append("\n");
+    }
+    correct();
+    error="";
+    QFile file("OUTPUT_FILES/Consistency_output.xml");
+    file.open(QFile::ReadOnly | QFile::Text);
+    ui->outputText->setPlainText(file.readAll());
+    detection_out="";
+    var_detection="";}
+    else {QMessageBox::warning(this,"Crash Alert","Please load a sample first to correct errors");}
+
+}
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Detect_Errors----------------------------------------------------*/
+
+void MainWindow::on_pushButton_7_clicked()
+{   if(zk==1){
+    //clear the output window
+    ui->outputText->clear();
+
+
+    QTextStream stream(&loaded_text);
+    while (stream.readLineInto(&s)){
+        error.append(s.toStdString());
+        error.append("\n");
+    }
+    correct();
+    error="";
+    QString displayer=QString::fromStdString(detection_out);
+    ui->outputText->setPlainText(displayer);
+    //clear variables
+    detection_out="";
+    var_detection="";}
+    else {QMessageBox::warning(this,"Crash Alert","Please load a sample first to detect errors");}
+
+
+}
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Minify----------------------------------------------------*/
+void MainWindow::on_pushButton_6_clicked()
+{   if(zk==1){
+    //clear the file
+    std::ofstream ofs;
+    ofs.open("OUTPUT_FILES/minify_output.xml", std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+
+    QTextStream stream(&loaded_text);
+    string minif;
+    ofstream out_file;
+    out_file.open("OUTPUT_FILES/minify_output.xml");
+    while (stream.readLineInto(&s)){
+        int i = 0;
+        minif = s.toStdString();
+        while (minif[i] == ' ') // to remove the spaces in the begin of the line
+            i++;
+        minif.erase(minif.begin(), minif.begin() + i);
+        out_file << minif;
+    }
+    out_file.close();
+
+    QFile file("OUTPUT_FILES/minify_output.xml");
+    file.open(QFile::ReadOnly | QFile::Text);
+    ui->outputText->setPlainText(file.readAll());
+    //clear the string
+    in_s="";}
+      else {QMessageBox::warning(this,"Crash Alert","Please load a sample first to minify");}
+    }
+
+
+
+
+void MainWindow::on_actionExit_triggered()
+{
+    QApplication::quit();
+}
