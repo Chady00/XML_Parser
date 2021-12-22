@@ -318,3 +318,22 @@ void print_node(node*root,int& new_space,int node_type,int rr_indicator,int rr_m
     }
 
 }
+
+
+int main(void)
+{
+    
+    get_xml();
+    xml_editor();
+    string s="   ";
+    output.open("sample_to.xml");
+    int x = 1;
+    tree my_tree;
+    create_tree(my_tree);
+    node* root = my_tree.get_root();
+    print_node(root,x,1,1,1,1,s);
+    output<<"  \n    }";
+    output << "\n}";
+    output.close();
+
+}
