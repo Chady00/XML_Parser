@@ -153,8 +153,21 @@ string check_const(string in_str)
                 my_stack.pop();
                 my_stack.push(tag);
             }
+            
+            
+            
+            // 3 >>> if tag is close but the stack is empty >>> delete the tag
+            else if (tag[1] == '/' && my_stack.empty())
+            {
+                error_num++;
+                var_detection = "error:\t" + to_string(error_num) + "\t closed tag for unopened tag:  " + tag + "\n"; // adding the error line to detection output
+                detection_out.append(var_detection);
+                //cout << "error:\t" << error_num << "\t closed tag for unopened tag:  " << tag << endl; // for error tracing
+                out_str.append(data_between);
+            }
+            
 
-            // 3 >>> if tag is close and matches the open tag
+            // 4 >>> if tag is close and matches the open tag
             else if (tag[1] == '/' && comp_tags(my_stack.top(), tag))
             {
                 my_stack.pop();
@@ -162,7 +175,7 @@ string check_const(string in_str)
                 out_str.append(tag);
             }
 
-            // 4 >>> if tag is close and does not match the open tag but matches open tag on lower level
+            // 5 >>> if tag is close and does not match the open tag but matches open tag on lower level
             else if (tag[1] == '/' && tag_in_stack(tag, my_stack))
             {
                 int level_of_stack = my_stack.size() - 1;
@@ -187,7 +200,7 @@ string check_const(string in_str)
                 my_stack.pop();
             }
 
-            // 5 >>> case 4 >>> close tag &&does not match the open tag nor open tags on lower levels >> (correct the closed tag)
+            // 6  >>> close tag &&does not match the open tag nor open tags on lower levels >> (correct the closed tag)
             else if (tag[1] == '/' && !(tag_in_stack(tag, my_stack)))
             {
                 error_num++;
@@ -216,7 +229,7 @@ string check_const(string in_str)
             get_data = false;
         }
     }
-    // case 6 >>> when the stack is not empty in the end
+    // 7 >>> when the stack is not empty in the end
     while (!my_stack.empty())
     {
         error_num++;
