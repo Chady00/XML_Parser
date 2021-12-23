@@ -56,6 +56,7 @@ void format(){
 {   
     //check if line is empty or all white spaces
       if(line.find_first_not_of(' ') != std::string::npos){
+            /*
             // if not empty line, check for concatenation of tags and separate them making each in a new line
             data_start=get_start(&line);
             
@@ -81,7 +82,7 @@ void format(){
                 }
             }
 
-            else{file_contents.push_back(line);}
+            else{*/file_contents.push_back(line);//}
         }
 }
 
