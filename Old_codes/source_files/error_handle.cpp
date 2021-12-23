@@ -1,6 +1,6 @@
 #include "error_handle.h"
 
-    using namespace std;
+using namespace std;
 
 // getting the line indentation based on stack level
 string get_indent(int stack_level)
@@ -135,6 +135,7 @@ string check_const(string in_str)
                 }
             }
             // 2 >>> if tag is open and data before
+
             else if (tag[1] != '/' && data_between_modified != "")
             {
                 error_num++;
@@ -151,7 +152,16 @@ string check_const(string in_str)
                 my_stack.push(tag);
             }
 
-            // 3 >>> if tag is close and matches the open tag
+            // 3 >>> if tag is close but the stack is empty >>> delete the tag
+            else if (tag[1] == '/' && my_stack.empty())
+            {
+                error_num++;
+                cout << "error:\t" << error_num << "\t closed tag for unopened tag:  " << tag << endl; // for error tracing
+                out_str.append(data_between);
+            }
+
+            // 4 >>> if tag is close and matches the open tag
+
             else if (tag[1] == '/' && comp_tags(my_stack.top(), tag))
             {
                 my_stack.pop();
@@ -159,7 +169,7 @@ string check_const(string in_str)
                 out_str.append(tag);
             }
 
-            // 4 >>> if tag is close and does not match the open tag but matches open tag on lower level
+            // 5 >>> if tag is close and does not match the open tag but matches open tag on lower level
             else if (tag[1] == '/' && tag_in_stack(tag, my_stack))
             {
                 int level_of_stack = my_stack.size() - 1;
@@ -183,7 +193,7 @@ string check_const(string in_str)
                 my_stack.pop();
             }
 
-            // 5 >>> case 4 >>> close tag &&does not match the open tag nor open tags on lower levels >> (correct the closed tag)
+            // 6 >>> case 4 >>> close tag &&does not match the open tag nor open tags on lower levels >> (correct the closed tag)
             else if (tag[1] == '/' && !(tag_in_stack(tag, my_stack)))
             {
                 error_num++;
@@ -193,7 +203,7 @@ string check_const(string in_str)
                 out_str.append(close_tag(my_stack.top()));
                 my_stack.pop();
             }
-
+            // }
             // for stack tracing
             // cout << (my_stack.size());
             // PrintStack(my_stack);
@@ -203,6 +213,7 @@ string check_const(string in_str)
         else
         {
             index_in++;
+            // out_str.append(curr_char);
         }
         if (index_in == len_in)
         {
@@ -210,7 +221,7 @@ string check_const(string in_str)
             get_data = false;
         }
     }
-    // case 6 >>> when the stack is not empty in the end
+    // case 7 >>> when the stack is not empty in the end
     while (!my_stack.empty())
     {
         error_num++;
