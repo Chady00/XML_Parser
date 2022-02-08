@@ -23,3 +23,10 @@ JavaScript function.
 transfers.
 
 • Minify: To save an amount of space in memory. It removes any extra spaces, or identations.
+
+• Graph representasion and analysis: output a visualization graph of the social network and analyize the graph (most followed user , most connceted user , etc).
+
+• compare users: (compares two users and outputs the mutual friends between them).
+
+• post search: searches for a keyword and ouputs the post(s) where this keyword exists.
+
