@@ -8,7 +8,6 @@
 #include<string>
 
 using namespace std;
-
 #include <QFileDialog> //Provide a header for the Q-file Dialog
 #include <QMessageBox>
 #include <QString>
@@ -17,12 +16,21 @@ using namespace std;
 #include <QPalette>
 #include<QVector>
 #include<QTextEdit>
+#include<gvc.h>
+#include<cdt.h>
+#include<cgraph.h>
+#include<QPixmap>
+#include"dialog2.h"
+#include"dialog3.h"
+
+
 /*-------------------------------------- GLOBAL VARIABLES--------------------------------------*/
 QString loaded_text,s;
 vector<string> file_contents; // the is an extern variable used in all .cpp files
-string error,detection_out,var_detection,in_s="";
+string error,detection_out,var_detection,in_s="",represent,global_string,xml_string;
+vector<int>users_list;
 vector<string> line3;
-unsigned char zk;
+unsigned char zk,prevent_repr,prevent_compare;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -35,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
     setFixedSize(this->geometry().width(),this->geometry().height());
     QCoreApplication::setApplicationName("your title");
     setWindowTitle("XML_EDITOR");
+    /*hide gui labels*/
+    ui->label_4->hide();
+    ui->pic_frame->hide();
 
 }
 
@@ -47,7 +58,8 @@ MainWindow::~MainWindow()
 /*-------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------OPEN BUTTON--------------------------------------------------*/
 void MainWindow::on_actionOpen_triggered()
-{   zk=1;
+{   disable_effects();
+    zk=1;
     ui->label_3->setVisible(false);
     QString select ="All files(*.*);;XML files(*.xml)";
     QString myfile =QFileDialog::getOpenFileName(this,"Select an XML file","Desktop:\\",select); //create an object
@@ -69,10 +81,16 @@ void MainWindow::on_actionOpen_triggered()
 
 
 }
+void MainWindow::disable_effects(){
+    ui->pic_frame->hide();
+    ui->label_4->hide();
+}
+
 /*-------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------FORMAT BUTTON-------------------------------------------------*/
 void MainWindow::on_pushButton_clicked()
-{   if(zk==1){
+{   disable_effects();//disable the effects of graphics
+    if(zk==1){
     int data_start=0,closend=0,end=0,temp=0;
     QTextStream stream(&loaded_text);
     //Must get input from file:
@@ -125,7 +143,8 @@ void MainWindow::on_pushButton_clicked()
 /*--------------------------------------------COMPRESS BUTTON-------------------------------------------------*/
 
 void MainWindow::on_pushButton_4_clicked()
-{   //Must get input from file:
+{   disable_effects();
+    //Must get input from file:
     if(zk==1){
     //clear the output window
         ui->outputText->clear();
@@ -152,8 +171,8 @@ void MainWindow::on_pushButton_4_clicked()
 /*--------------------------------------------DECOMPRESS BUTTON------------------------------------------------*/
 
 void MainWindow::on_pushButton_5_clicked()
-{
- if(zk==1){
+{   disable_effects();
+    if(zk==1){
     decompress();
     QFile file("OUTPUT_FILES/decompression_output.xml");
     file.open(QFile::ReadOnly | QFile::Text);
@@ -168,7 +187,7 @@ void MainWindow::on_pushButton_5_clicked()
 /*-------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------TO_JASON()-------------------------------------------------------*/
 void MainWindow::on_pushButton_3_clicked()
-{
+{       disable_effects();
         if(zk==1){
        QTextStream stream(&loaded_text);
         while (stream.readLineInto(&s)){
@@ -189,7 +208,8 @@ void MainWindow::on_pushButton_3_clicked()
 /*-------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------Correct_Errors---------------------------------------------------*/
 void MainWindow::on_pushButton_2_clicked()
-{   if(zk==1){
+{   disable_effects();
+    if(zk==1){
     //clear the output window
     ui->outputText->clear();
 
@@ -213,7 +233,8 @@ void MainWindow::on_pushButton_2_clicked()
 /*--------------------------------------------Detect_Errors----------------------------------------------------*/
 
 void MainWindow::on_pushButton_7_clicked()
-{   if(zk==1){
+{   disable_effects();
+    if(zk==1){
     //clear the output window
     ui->outputText->clear();
 
@@ -235,7 +256,7 @@ void MainWindow::on_pushButton_7_clicked()
 
 }
 /*-------------------------------------------------------------------------------------------------------------*/
-/*--------------------------------------------Minify----------------------------------------------------*/
+/*-----------------------------------------------Minify--------------------------------------------------------*/
 void MainWindow::on_pushButton_6_clicked()
 {   if(zk==1){
     //clear the file
@@ -272,3 +293,97 @@ void MainWindow::on_actionExit_triggered()
 {
     QApplication::quit();
 }
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------REPRESENT GRAPH-----------------------------------------------*/
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    represent="";
+    //clear output text
+        ui->outputText->clear();
+        if(zk==1){
+        if(prevent_compare==0){
+        //load the Qstring into a string
+        QTextStream stream(&loaded_text);
+        while (stream.readLineInto(&s)){
+        represent.append(s.toStdString());
+        prevent_repr=1;
+        }
+
+       Represent();
+       }
+       // string  dotLang="digraph main{node[shape =rect label=\"Read \n (x)\"]id1 node[shape =rect label=\"if\"] id2 {rank = same; id1; id2; } id1->id2}";
+       //string  dotLang= "digraph G  {node[shape=record] 1[label=\"{ Ahmed | 2 | 3 }\"] 2[] 3[] 1->{3, 2} 2->{1} 3->{1} }";
+
+       Agraph_t* G;
+       GVC_t* gvc1;
+       gvc1 = gvContext();
+       char * y =&represent[0];
+       G = agmemread(y);
+       gvLayout (gvc1, G, "dot");
+       gvRenderFilename(gvc1,G,"png","OUTPUT_FILES/visual_graph.png");
+       gvFreeLayout(gvc1, G);
+       agclose (G);
+       gvFreeContext(gvc1);
+
+
+       /*displaying png*/
+
+
+       QPixmap map("OUTPUT_FILES/visual_graph.png");
+       //adjusting width and height , and displaying the png
+       int w = ui->pic_frame->width();
+       int h = ui->pic_frame->height();
+
+       ui->pic_frame->setPixmap(map.scaled(w,h,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+       ui->pic_frame->show();
+       ui->label_4->show();
+       //open backup image
+       ifstream image;
+       image.open("OUTPUT_FILES/visual_graph.png");
+
+
+
+
+    }
+    else{QMessageBox::warning(this,"Crash Alert","Please load a sample first to graphically represent");}
+
+}
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------- COMPARE USER --------------------------------------------------*/
+void MainWindow::on_pushButton_9_clicked()
+{    //load the Qstring into a string
+    if(zk==1){
+    if(prevent_repr==0){ // check if the string is already loaded
+    QTextStream stream(&loaded_text);
+    while (stream.readLineInto(&s)){
+    represent.append(s.toStdString());
+    prevent_compare=1;
+    }
+
+    Represent();
+
+    }
+    represent="";
+    Dialog2 *dialog = new Dialog2(this);
+    dialog->show();}
+
+    else{QMessageBox::warning(this,"Crash Alert","Please load a sample first to compare users");}
+
+}
+
+
+void MainWindow::on_pushButton_10_clicked()
+{   if(zk==1){
+     QTextStream stream(&loaded_text);
+     while (stream.readLineInto(&s)){
+     xml_string.append(s.toStdString());
+     }
+    Dialog3 *dialog = new Dialog3(this);
+    dialog->show();
+    }
+     else{QMessageBox::warning(this,"Crash Alert","Please load a sample first to post search a keyword");}
+}
+
