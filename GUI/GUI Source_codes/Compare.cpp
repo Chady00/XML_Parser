@@ -1,4 +1,4 @@
-#include "dialog2.h"
+#include "Compare.h"
 #include "ui_dialog2.h"
 #include<Graph_representation.h>
 #include<mainwindow.h>
