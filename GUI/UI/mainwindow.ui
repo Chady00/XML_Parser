@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1245</width>
-    <height>511</height>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -240,8 +240,8 @@ color:blue;
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>430</y>
+      <x>530</x>
+      <y>440</y>
       <width>671</width>
       <height>31</height>
      </rect>
@@ -282,6 +282,118 @@ QPushButton#pushButton_7:hover {
     </property>
     <property name="text">
      <string>Detect</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>430</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#FF3F3F;
+border:3px solid black;
+color:#0;
+font-weight:  bold;
+font-size:16px;
+}
+
+QPushButton#pushButton_8:hover {
+     background-color: #938BFF;
+ }</string>
+    </property>
+    <property name="text">
+     <string>REPRESENT GRAPH</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>410</y>
+      <width>701</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-weight: bold;
+font-size: 16pt;
+color:green;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>A PNG backup has been created in OUTPUT FILES</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pic_frame">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>30</y>
+      <width>561</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_9">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>430</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#EF3E3E;
+border:3px solid black;
+color:#0;
+font-weight:  bold;
+font-size:16px;
+}
+
+QPushButton#pushButton_9:hover {
+     background-color: #938BFF;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Compare Users</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_10">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>430</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:#EF3E3E;
+border:3px solid black;
+color:#0;
+font-weight:  bold;
+font-size:16px;
+}
+
+QPushButton#pushButton_10:hover {
+     background-color: #9382FF;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Post Search</string>
     </property>
    </widget>
   </widget>
@@ -330,4 +442,3 @@ QPushButton#pushButton_7:hover {
  <resources/>
  <connections/>
 </ui>
-
