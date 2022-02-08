@@ -9,7 +9,10 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Graph_Representation.cpp \
     comp.cpp \
+    dialog2.cpp \
+    dialog3.cpp \
     error_handle.cpp \
     format.cpp \
     main.cpp \
@@ -19,7 +22,10 @@ SOURCES += \
     tree.cpp
 
 HEADERS += \
+    Graph_representation.h \
     comp.h \
+    dialog2.h \
+    dialog3.h \
     error_handle.h \
     format.h \
     mainwindow.h \
@@ -27,12 +33,20 @@ HEADERS += \
     tree.h
 
 FORMS += \
+    dialog2.ui \
+    dialog3.ui \
     mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+GRAPHVIZ_PATH = "C:/Program Files/Graphviz"
+DEFINES += WIN32_DLL
+DEFINES += GVDLL
+INCLUDEPATH += $$GRAPHVIZ_PATH/include/graphviz
+LIBS += -L$$GRAPHVIZ_PATH/lib -lgvc -lcgraph  -lcdt
 
 RESOURCES += \
     All_the_resour.qrc
@@ -46,4 +60,3 @@ DISTFILES += \
     minify_output.xml \
     temp.xml \
     toJson_output.json
-
