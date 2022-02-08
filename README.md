@@ -6,15 +6,20 @@ tags, subtags, or contents. The syntax of an XML file represents a combination o
 a document of any sort.
 The syntax must be followed to represent an XML file correctly. For that to be achieved, it is obligatory to
 follow a certain arrangement through the following:
+
 • Formatting (Identation):
 Identation is necessary for readability and comprehensibility. It is also important to remove irrelevant or
 needless whitespaces.
+
 • Error Detection(and correction):
 In order to achieve the previously mentioned standards: each open tag can be proceeded by multiple open
 tags as long as the open tags are subsequently closed in the correct order, i.e the first occuring closed tag
 must be lead by a similar open tag.
+
 • ToJson: Json offers a lot of great features that are non‐existing in XML: it can be parsed by a standard
 JavaScript function.
+
 • Compress/Decompress: It’s required to reduce the size of large documents/XML files for larger
 transfers.
+
 • Minify: To save an amount of space in memory. It removes any extra spaces, or identations.
