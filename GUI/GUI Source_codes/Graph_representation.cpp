@@ -225,6 +225,41 @@ void Represent()
 
     // Fill_graph data
     users_vector= fill_graph_data(represent);
+      //get most active user and most followed user
+    int mostactive=Most_active(users_vector);
+    int most_followed=Has_more_Followers(users_vector);
+
+    //getting users list
+    get_users_list(users_vector);
+
+    // cout << "\n\n\n";
+
+        represent = "digraph G  {node[shape=record] ";
+
+        // cout << users_vector.size() << endl;
+        string id;
+        string name;
+        for (G_LinkedList *i : users_vector)
+        {//string  dotLang= "digraph G  {node[shape=record] 1[label=\"{ 1 | 2 | 3 }\"] 2[] 3[] 1->{3, 2} 2->{1} 3->{1} }";
+            // represent.append("\n");
+            id = to_string(i->Myhead()->get_id());
+            name = i->Myhead()->get_name();
+            represent.append(id);
+            if(id==to_string(mostactive))
+            {
+            represent.append("[style =filled color=Cyan,label=\"{");
+            }
+            else if(id==to_string(most_followed)){
+                represent.append("[style =filled color=yellow,label=\"{");
+            }
+            else{represent.append("[label=\"{ ");}
+            represent.append(name);
+            represent.append(" | ");
+            represent.append(id);
+            represent.append(" }\"] ");
+           // i->print();
+            // cout << "\n";
+        }
 
 
 
