@@ -7,11 +7,11 @@ a document of any sort.
 The syntax must be followed to represent an XML file correctly. For that to be achieved, it is obligatory to
 follow a certain arrangement through the following:
 
-###• Formatting (Identation):
+###•### Formatting (Identation):
 Identation is necessary for readability and comprehensibility. It is also important to remove irrelevant or
 needless whitespaces.
 
-###• Error Detection(and correction):
+### • Error Detection(and correction):
 In order to achieve the previously mentioned standards: each open tag can be proceeded by multiple open
 tags as long as the open tags are subsequently closed in the correct order, i.e the first occuring closed tag
 must be lead by a similar open tag.
