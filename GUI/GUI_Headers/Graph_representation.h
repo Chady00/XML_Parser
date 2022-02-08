@@ -92,6 +92,12 @@ extern string represent; // extern variable
 extern vector<int>users_list;
 
 
+vector<G_LinkedList *> fill_graph_data(string xml_data);
+int get_followers(string str_in, int start_ind, G_LinkedList *user_list);
+void Represent();
+string get_name(string str_in, int start_ind);
+
+
 void get_users_list();
 int Most_active(vector <G_LinkedList *> u );
 int Has_more_Followers(vector <G_LinkedList *> u);
