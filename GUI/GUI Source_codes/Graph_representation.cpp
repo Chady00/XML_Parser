@@ -214,6 +214,17 @@ vector<G_LinkedList *> fill_graph_data(string xml_data)
 
 
 
+void Represent()
+{
+    /// Represent();
+
+///    std::ifstream t("sample.txt");
+////   std::string str((std::istreambuf_iterator<char>(t)),
+///                    std::istreambuf_iterator<char>());
+    //// cout << str << endl;
+
+    // Fill_graph data
+    users_vector= fill_graph_data(represent);
 
 
 
