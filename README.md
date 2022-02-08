@@ -27,6 +27,8 @@ transfers.
 ### • Minify:
 To save an amount of space in memory. It removes any extra spaces, or identations.
 
+## Social Network Analysis
+
 ### • Graph representasion and analysis:
 output a visualization graph of the social network and analyize the graph (most followed user , most connceted user , etc).
 
