@@ -263,6 +263,29 @@ void Represent()
 
 
 
+        for (G_LinkedList *i : users_vector)
+        {
+            represent.append(to_string(i->Myhead()->get_id()));
+            represent.append("->{");
+            Graph_Node *curr_head = i->Myhead()->get_next();
+            while (curr_head != NULL)
+            {
+
+                represent.append(to_string(curr_head->get_id()));
+                if (curr_head->get_next() != NULL)
+                {
+                    represent.append(", ");
+                }
+                curr_head = curr_head->get_next();
+            }
+            represent.append("} ");
+        }
+
+        represent.append("}");
+        //cout << represent << endl;
+
+    }
+
 
 
 
