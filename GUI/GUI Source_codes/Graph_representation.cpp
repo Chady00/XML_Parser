@@ -1,6 +1,58 @@
 
+#include<Graph_representation.h>
+
+vector<G_LinkedList *> users_vector;
 
 
+/***** Functions Definition ******/
+
+vector<G_LinkedList *> get_all_vectors(){
+    return users_vector;
+}
+
+int Most_active(vector <G_LinkedList *> u ){
+    int mostactive = 1;
+    int count=0;
+    int count2=0;
+
+    for(unsigned int i=0; i<u.size();i++){
+            Graph_Node *curr_head = u[i]->Myhead()->get_next();
+            while (curr_head != NULL)
+            {
+               // cout<<curr_head->get_id()<<endl;
+                count2++;
+                curr_head = curr_head->get_next();
+            }
+
+        if(count<count2){count = count2; mostactive=u[i]->Myhead()->get_id();}
+        count2=0;
+    }
+    cout<<mostactive<<endl;
+    return mostactive;
+}
+
+
+int Has_more_Followers(vector <G_LinkedList *> u){
+    int most_followed = 1;
+    int arr[10000]={0};
+    for(unsigned int i=0; i<u.size();i++){
+            Graph_Node *curr_head = u[i]->Myhead()->get_next();
+            while (curr_head != NULL)
+            {   int current_val=curr_head->get_id();
+                //increment the array at id position
+                arr[current_val]+=1;
+                curr_head = curr_head->get_next();
+            }
+    }
+    int count=0;
+    for(int i=0; i<10000;i++){
+        if(arr[i]>=count){
+            count=arr[i];
+            most_followed=i;
+        }
+    }
+    return most_followed;
+}
 
 
 
@@ -26,6 +78,7 @@ string get_name(string str_in, int start_ind)
 
     return name;
 }
+
 
 
 
